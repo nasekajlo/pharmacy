@@ -130,7 +130,10 @@
     <ClCompile Include="pharmacy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="Drug.h" />
+    <ClInclude Include="PharmacyShop.h" />
+    <ClInclude Include="Seller.h" />
     <ClInclude Include="Storage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

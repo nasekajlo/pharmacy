@@ -14,6 +14,10 @@ protected:
 	PRICE price;
 	std::string producent;
 	int waiting_time;
+	bool need_prescription = false;
+	void setWaitingTime(int waiting_time) {
+		this->waiting_time = waiting_time;
+	}
 public:
 	Drug(std::string name, ID id, PRICE price, std::string producent, int waiting_time = 0) :
 		name(name), id(id), price(price), producent(producent), waiting_time(waiting_time) {};
@@ -21,13 +25,13 @@ public:
 	virtual ~Drug() {};
 	virtual void printInformation() const = 0;
 
-	void setWaitingTime(int waiting_time) {
-		this->waiting_time = waiting_time;
-	}
+	template <typename Product>
+	friend class Storage;
+	template <typename Product>
+	friend class PharmacyShop;
 };
 
 class DrugNonPrescription : public Drug {
-	bool need_prescription = false;
 
 public:
 	DrugNonPrescription(std::string name, ID id, PRICE price, std::string producent, int waiting_time = 0) :
@@ -37,17 +41,17 @@ public:
 		std::cout << "This drug is called " << this->name << std::endl;
 		std::cout << "Its ID is " << this->id << std::endl;
 		std::cout << "It can be sold without any prescription" << std::endl;
-		std::cout << "Its price equals " << this->price << std::endl;
+		std::cout << "Its price equals " << this->price << "$" << std::endl;
 		std::cout << "It was made by " << this->producent << std::endl;
 	}
 };
 
 class DrugWithPrescription : public Drug {
-	bool need_prescription = true;
-
 public:
 	DrugWithPrescription(std::string name, ID id, PRICE price, std::string producent, int waiting_time = 0) :
-		Drug(name, id, price, producent, waiting_time) {};
+		Drug(name, id, price, producent, waiting_time) {
+		need_prescription = true;
+	};
 
 	void printInformation() const override {
 		std::cout << "This drug is called " << this->name << std::endl;

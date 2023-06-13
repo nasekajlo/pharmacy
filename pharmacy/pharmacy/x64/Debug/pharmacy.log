@@ -1,0 +1,29 @@
+﻿  pharmacy.cpp
+D:\pharmacy\pharmacy\pharmacy\pharmacy.cpp(95,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\pharmacy\pharmacy\pharmacy\pharmacy.cpp(98,18): warning C4244: 'initializing': conversion from 'int' to 'PRICE', possible loss of data
+D:\pharmacy\pharmacy\pharmacy\PharmacyShop.h(66,41): warning C4244: 'argument': conversion from 'PRICE' to 'int', possible loss of data
+D:\pharmacy\pharmacy\pharmacy\PharmacyShop.h(59,1): message : while compiling class template member function 'bool PharmacyShop<Drug *>::sellProduct(Product,int,Customer &)'
+          with
+          [
+              Product=Drug *
+          ]
+D:\pharmacy\pharmacy\pharmacy\pharmacy.cpp(61,7): message : see reference to function template instantiation 'bool PharmacyShop<Drug *>::sellProduct(Product,int,Customer &)' being compiled
+          with
+          [
+              Product=Drug *
+          ]
+D:\pharmacy\pharmacy\pharmacy\pharmacy.cpp(41,43): message : see reference to class template instantiation 'PharmacyShop<Drug *>' being compiled
+D:\pharmacy\pharmacy\pharmacy\PharmacyShop.h(53,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\pharmacy\pharmacy\pharmacy\PharmacyShop.h(52,1): message : while compiling class template member function 'void PharmacyShop<Drug *>::orderProduct(Product)'
+          with
+          [
+              Product=Drug *
+          ]
+D:\pharmacy\pharmacy\pharmacy\pharmacy.cpp(101,32): message : see reference to function template instantiation 'void PharmacyShop<Drug *>::orderProduct(Product)' being compiled
+          with
+          [
+              Product=Drug *
+          ]
+D:\pharmacy\pharmacy\pharmacy\Storage.h(34): warning C4715: 'Storage<Drug *>::getProduct': not all control paths return a value
+D:\pharmacy\pharmacy\pharmacy\Storage.h(61): warning C4715: 'Storage<Drug *>::getQuantityOnStorage': not all control paths return a value
+  pharmacy.vcxproj -> D:\pharmacy\pharmacy\x64\Debug\pharmacy.exe

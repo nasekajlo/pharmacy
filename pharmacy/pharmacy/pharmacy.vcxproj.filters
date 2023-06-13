@@ -26,5 +26,14 @@
     <ClInclude Include="Storage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PharmacyShop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Seller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
