@@ -42,7 +42,7 @@ public:
 		std::cout << "Its ID is " << this->id << std::endl;
 		std::cout << "It can be sold without any prescription" << std::endl;
 		std::cout << "Its price equals " << this->price << "$" << std::endl;
-		std::cout << "It was made by " << this->producent << std::endl;
+		std::cout << "It was made in " << this->producent << std::endl;
 	}
 };
 
@@ -58,6 +58,6 @@ public:
 		std::cout << "Its ID is " << this->id << std::endl;
 		std::cout << "It cannot be sold without any prescription" << std::endl;
 		std::cout << "Its price equals " << this->price << std::endl;
-		std::cout << "It was made by " << this->producent << std::endl;
+		std::cout << "It was made in " << this->producent << std::endl;
 	}
 };

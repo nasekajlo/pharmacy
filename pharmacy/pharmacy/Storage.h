@@ -32,8 +32,18 @@ public:
 				return products[i].first;
 		}
 	}
-	void addProductToWaitingList(Product product) {
-		this->products.push_back(std::make_pair(product, 3));
+	void addProductToWaitingList(Product product, int desired_quantity) {
+		bool isExist = 0;
+		for (int i = 0; i < products.size(); i++) {
+			if (products[i].first->name == product->name)
+			{
+				products[i].second = desired_quantity;
+				isExist = 1;
+			}
+				
+		}
+		if (!isExist)
+			this->products.push_back(std::make_pair(product, desired_quantity));
 	}
 
 	//decrease waiting time for ordered drugs
@@ -45,10 +55,6 @@ public:
 			}
 			if (products[i].first->id == product->id) {
 				products[i].second -= quantity_sold;
-				if (products[i].second == 0) {
-					products[i].second = 5;
-					products[i].first->setWaitingTime(5);
-				}
 			}
 		}
 	}

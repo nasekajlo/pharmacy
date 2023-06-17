@@ -12,6 +12,8 @@
 #include "Seller.h"
 #include "Storage.h"
 
+typedef int ID;
+
 int main()
 {
 	std::ifstream fin("drugs.txt");
@@ -19,7 +21,7 @@ int main()
 	for (int i = 0; i < 100; i++) {
 		std::string name;
 		fin >> name;
-		int id;
+		ID id;
 		fin >> id;
 		float price;
 		fin >> price;
@@ -39,12 +41,17 @@ int main()
 	Storage<Drug*> storage(products);
 	Seller seller(10, "John");
 	PharmacyShop<Drug*> pharmacy_shop(storage, seller, "Apotheke");
-	Customer customer;
+	//Customer customer;
 	std::cout << "What are your ID and name?" << std::endl;
-	std::string drug_name;
-	while (std::cin >> customer) {
+	ID id;
+	while (std::cin >> id) {
+		std::cin.ignore();
+		std::string name;
+		std::getline(std::cin, name);
+		Customer customer(id, name);
 		pharmacy_shop.greeting();
 		pharmacy_shop.askForPurchase(customer);
+		std::string drug_name;
 		while (std::cin >> drug_name) {
 			if (pharmacy_shop.isAvailable(drug_name)) {
 				pharmacy_shop.printInformationAboutDrug(pharmacy_shop.getProduct(drug_name));
@@ -62,7 +69,23 @@ int main()
 							std::cout << "Nice, you can take this drugs" << std::endl;
 						}
 						else {
-							std::cout << "There is no so many drugs on the storage, choose another one!" << std::endl;
+							std::cout << "There is no so many drugs on the storage" << std::endl;
+	
+							std::cout << "Do you want to order it?" << std::endl;
+							std::cout << "Type 'yes' or 'no'" << std::endl;
+							std::string answer;
+							while (std::cin >> answer && answer != "yes" && answer != "no") {
+								std::cout << "incorrect data" << std::endl;
+							}
+							if (answer == "yes") {
+								std::cout << "How many drugs do you want to order?" << std::endl;
+								int desired_quantity;
+								std::cin >> desired_quantity;
+								srand(time(NULL));
+								pharmacy_shop.orderProduct(pharmacy_shop.getProduct(drug_name), desired_quantity);
+								std::cout << "Nice, you have ordered " << drug_name << std::endl;
+								std::cout << "You have to wait for it from 1 to 3 days" << std::endl;
+							}
 						}
 					}
 					else {
@@ -79,6 +102,24 @@ int main()
 					}
 					else {
 						std::cout << "There is no so many drugs on the storage, choose another one!" << std::endl;
+						std::cout << "Sorry, but this drug is not available now, you can order it and wait for it" << std::endl;
+						std::cout << "Do you want to order it?" << std::endl;
+						std::cout << "Type 'yes' or 'no'" << std::endl;
+						std::string answer;
+						while (std::cin >> answer && answer != "yes" && answer != "no") {
+							std::cout << "incorrect data" << std::endl;
+						}
+						if (answer == "yes") {
+							std::cout << "How many drugs do you want to order?" << std::endl;
+							int desired_quantity;
+							std::cin >> desired_quantity;
+							srand(time(NULL));
+							//int waiting_time = rand() % 100 + 1;
+			
+							pharmacy_shop.orderProduct(pharmacy_shop.getProduct(drug_name), desired_quantity);
+							std::cout << "Nice, you have ordered " << drug_name << std::endl;
+							std::cout << "You have to wait for it from 1 to 3 days" << std::endl;
+						}
 					}
 				}
 			}
@@ -92,13 +133,16 @@ int main()
 					std::cout << "incorrect data" << std::endl;
 				}
 				if (answer == "yes") {
-					srand(time(NULL));
-					int waiting_time = rand() % 3 + 1;
+					std::cout << "How many drugs do you want to order?" << std::endl;
+					int desired_quantity;
+					std::cin >> desired_quantity;
+					//srand(time(NULL));
+					//int waiting_time = rand() % 3 + 1;
 					ID id = rand() % 1000000 + 100;
 					PRICE price = rand() % 100 + 10;
 					std::string producent = "Ukrain";
-					Drug* new_drug = new DrugWithPrescription(drug_name, id, price, producent, waiting_time);
-					pharmacy_shop.orderProduct(new_drug);
+					Drug* new_drug = new DrugWithPrescription(drug_name, id, price, producent, desired_quantity);
+					pharmacy_shop.orderProduct(new_drug, desired_quantity);
 					std::cout << "Nice, you have ordered " << drug_name << std::endl;
 					std::cout << "You have to wait for it from 1 to 3 days" << std::endl;
 				}
@@ -124,4 +168,4 @@ int main()
 		std::cout << "What are your ID and name?" << std::endl;
 	}
 }
-
+ 

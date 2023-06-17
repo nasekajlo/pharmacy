@@ -48,12 +48,14 @@ public:
 		std::cout << "Type 'yes' or 'no'" << std::endl;
 	}
 	
-	//random quantity og day for waiting an ordered product
-	void orderProduct(Product product) {
+	//random quantity of day for waiting an ordered product
+	void orderProduct(Product product, int desired_quantity) {
 		srand(time(NULL));
-		int waiting_time = rand() % 3 + 1;
+		int waiting_time = 2;
 		product->setWaitingTime(waiting_time);
-		storage.addProductToWaitingList(product);
+		storage.addProductToWaitingList(product, desired_quantity);
+		int quantity_sold = 0;
+		storage.updateStorage(product, quantity_sold);
 	}
 
 	bool sellProduct(Product product, int quantity_sold, Customer& customer) {
