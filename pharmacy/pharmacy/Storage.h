@@ -21,7 +21,7 @@ public:
 	
 	bool isAvailable(std::string name) {
 		for (int i = 0; i < products.size(); i++) {
-			if (products[i].first->name == name)
+			if (products[i].first->name == name && products[i].first->waiting_time==0)
 				return true;
 		}
 		return false;
